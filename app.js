@@ -280,14 +280,14 @@
       .attr('font-size', '10px')
       .text(function (d) { return d.data.leader; });
 
-    // Elder cross marker - inside circle if elderInside, outside if not
+    // Elder cross marker - inside circle at bottom if elderInside, outside if not
     nodes.filter(function (d) { return !d.data.isRoot && d.data.hasElder; })
       .append('text')
       .attr('dx', function (d) {
         return d.data.elderInside ? 0 : circleRadius(d) + 4;
       })
       .attr('dy', function (d) {
-        return d.data.elderInside ? -(circleRadius(d) - 10) : -4;
+        return d.data.elderInside ? (circleRadius(d) - 4) : -4;
       })
       .attr('text-anchor', function (d) {
         return d.data.elderInside ? 'middle' : 'start';
