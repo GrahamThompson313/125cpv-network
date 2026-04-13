@@ -7,6 +7,7 @@
 
   // --- Constants ---
   var PASSWORD = 'ForWord125!';
+  var EDIT_MODE = new URLSearchParams(window.location.search).get('edit') === 'true';
   var HEALTH_COLORS = {
     7: '#22c55e',
     6: '#4ade80',
@@ -519,6 +520,37 @@
       });
     }
 
+    // Decide between edit and view-only mode
+    if (!EDIT_MODE) {
+      // VIEW-ONLY MODE
+      var elderStatus = church.hasElder
+        ? (church.elderInside ? '&#10016; Elder inside' : '&#10016; Elder outside')
+        : 'No elder';
+      var healthClass = church.commandsObeyed >= 7 ? 'health-good'
+        : church.commandsObeyed >= 5 ? 'health-ok'
+        : church.commandsObeyed >= 4 ? 'health-warn' : 'health-bad';
+
+      panel.innerHTML =
+        '<div class="detail-card">' +
+          '<h2 style="font-size:18px;color:#f8fafc;margin-bottom:2px">' + escHtml(church.name) + '</h2>' +
+          (church.leader ? '<div style="color:#3b82f6;font-size:13px;margin-bottom:14px">Leader: ' + escHtml(church.leader) + '</div>' : '<div style="margin-bottom:14px"></div>') +
+          '<div class="detail-row">' +
+            '<div class="detail-field"><label>Believers</label><div style="font-size:20px;font-weight:700;color:#f8fafc">' + church.believers + '</div></div>' +
+            '<div class="detail-field"><label>Commands Obeyed</label><div class="' + healthClass + '" style="font-size:20px;font-weight:700">' + church.commandsObeyed + '/7</div></div>' +
+          '</div>' +
+          '<div class="detail-row">' +
+            '<div class="detail-field"><label>Year Founded</label><div style="font-size:16px;color:#f8fafc">' + (church.yearFounded || '—') + '</div></div>' +
+            '<div class="detail-field"><label>Location</label><div style="font-size:16px;color:#f8fafc">' + (escHtml(church.location) || '—') + '</div></div>' +
+          '</div>' +
+          '<div style="margin-top:8px;padding:8px 10px;background:#1e293b;border-radius:6px;font-size:13px;color:#cbd5e1">' + elderStatus + '</div>' +
+          (church.notes ? '<div style="margin-top:8px;padding:8px 10px;background:#1e293b;border-radius:6px;font-size:12px;color:#94a3b8"><strong style="color:#64748b">Notes:</strong> ' + escHtml(church.notes) + '</div>' : '') +
+          '<div class="detail-lineage"><strong>Lineage:</strong> ' + lineage + '</div>' +
+          '<div class="detail-children"><strong>Planted ' + childCount + ' churches</strong><div>' + childChips + '</div></div>' +
+        '</div>';
+      return;
+    }
+
+    // EDIT MODE
     panel.innerHTML =
       '<div class="detail-card">' +
         '<div class="detail-field">' +
