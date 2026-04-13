@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>125CPV Church Network</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <!-- Login Overlay -->
+  <div id="login-overlay">
+    <div class="login-box">
+      <h1>125CPV Network</h1>
+      <p>Enter the password to access the church network dashboard.</p>
+      <input type="password" id="login-password" placeholder="Password">
+      <button id="login-btn">Enter</button>
+    </div>
+  </div>
+
+  <div id="app">
+    <!-- Top Nav -->
+    <nav id="top-nav">
+      <div class="nav-brand">125CPV</div>
+      <div class="nav-tabs">
+        <button class="nav-tab active" data-page="2026">2026 Plants</button>
+        <button class="nav-tab" data-page="full">Full Network</button>
+        <button class="nav-tab" data-page="commands">7 Commands</button>
+        <button class="nav-tab" data-page="about">About</button>
+      </div>
+    </nav>
+
+    <!-- Page: 2026 Plants -->
+    <div id="page-2026" class="page active">
+      <div class="page-layout">
+        <div id="sidebar-2026" class="sidebar">
+          <div class="sidebar-header">
+            <h1>2026 Plants</h1>
+            <div class="subtitle">New churches planted this year</div>
+          </div>
+          <div class="stats" id="stats-2026"></div>
+          <div class="legend-compact">
+            <div class="legend-row"><div class="legend-dot" style="background:#22c55e"></div>7/7</div>
+            <div class="legend-row"><div class="legend-dot" style="background:#4ade80"></div>6/7</div>
+            <div class="legend-row"><div class="legend-dot" style="background:#eab308"></div>5/7</div>
+            <div class="legend-row"><div class="legend-dot" style="background:#f97316"></div>4/7</div>
+            <div class="legend-row"><div class="legend-dot" style="background:#ef4444"></div>&le;3/7</div>
+            <div class="legend-row"><div class="legend-elder">&#10016;</div>Elder</div>
+          </div>
+          <div class="detail-panel empty" id="detail-2026">Click a church to see details</div>
+        </div>
+        <div class="canvas-container" id="canvas-2026">
+          <div class="view-controls">
+            <button class="active" data-layout="tree" data-target="2026">Tree</button>
+            <button data-layout="radial" data-target="2026">Radial</button>
+          </div>
+          <div class="zoom-info">Zoom: <span class="zoom-level">100%</span></div>
+          <div class="zoom-controls">
+            <button class="zoom-in" data-target="2026">+</button>
+            <button class="zoom-out" data-target="2026">&minus;</button>
+            <button class="zoom-fit" data-target="2026">&#8859;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page: Full Network -->
+    <div id="page-full" class="page">
+      <div class="page-layout">
+        <div id="sidebar-full" class="sidebar">
+          <div class="sidebar-header">
+            <h1>Full Network</h1>
+            <div class="subtitle">All branches &bull; 2002&ndash;present</div>
+          </div>
+          <div class="stats" id="stats-full"></div>
+          <div class="legend-compact">
+            <div class="legend-row"><div class="legend-dot" style="background:#22c55e"></div>7/7</div>
+            <div class="legend-row"><div class="legend-dot" style="background:#4ade80"></div>6/7</div>
+            <div class="legend-row"><div class="legend-dot" style="background:#eab308"></div>5/7</div>
+            <div class="legend-row"><div class="legend-dot" style="background:#f97316"></div>4/7</div>
+            <div class="legend-row"><div class="legend-dot" style="background:#ef4444"></div>&le;3/7</div>
+            <div class="legend-row"><div class="legend-elder">&#10016;</div>Elder</div>
+          </div>
+          <div class="detail-panel empty" id="detail-full">Click a church to see details</div>
+        </div>
+        <div class="canvas-container" id="canvas-full">
+          <div class="view-controls">
+            <button class="active" data-layout="tree" data-target="full">Tree</button>
+            <button data-layout="radial" data-target="full">Radial</button>
+          </div>
+          <div class="zoom-info">Zoom: <span class="zoom-level">100%</span></div>
+          <div class="zoom-controls">
+            <button class="zoom-in" data-target="full">+</button>
+            <button class="zoom-out" data-target="full">&minus;</button>
+            <button class="zoom-fit" data-target="full">&#8859;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page: 7 Commands -->
+    <div id="page-commands" class="page">
+      <div class="commands-page" id="commands-content"></div>
+    </div>
+
+    <!-- Page: About -->
+    <div id="page-about" class="page">
+      <div class="about-page" id="about-content"></div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="commands.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
