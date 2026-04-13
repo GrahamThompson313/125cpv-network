@@ -251,15 +251,25 @@
       .attr('font-size', '10px')
       .text(function (d) { return d.data.location || ''; });
 
-    // B=X 7=X inside circle for non-root
+    // B=X line inside circle (stacked)
     nodes.filter(function (d) { return !d.data.isRoot; })
       .append('text')
-      .attr('dy', 1)
+      .attr('dy', -3)
       .attr('text-anchor', 'middle')
       .attr('fill', function (d) { return d.data.commandsObeyed >= 5 ? '#000' : '#fff'; })
       .attr('font-size', '9px')
       .attr('font-weight', '700')
-      .text(function (d) { return 'B=' + d.data.believers + ' 7=' + d.data.commandsObeyed; });
+      .text(function (d) { return 'B=' + d.data.believers; });
+
+    // 7=X line inside circle (stacked below)
+    nodes.filter(function (d) { return !d.data.isRoot; })
+      .append('text')
+      .attr('dy', 8)
+      .attr('text-anchor', 'middle')
+      .attr('fill', function (d) { return d.data.commandsObeyed >= 5 ? '#000' : '#fff'; })
+      .attr('font-size', '9px')
+      .attr('font-weight', '700')
+      .text(function (d) { return '7=' + d.data.commandsObeyed; });
 
     // Leader name below circle
     nodes.filter(function (d) { return !d.data.isRoot && d.data.leader; })
@@ -270,13 +280,24 @@
       .attr('font-size', '10px')
       .text(function (d) { return d.data.leader; });
 
-    // Elder cross marker
+    // Elder cross marker - inside circle if elderInside, outside if not
     nodes.filter(function (d) { return !d.data.isRoot && d.data.hasElder; })
       .append('text')
-      .attr('dx', function (d) { return circleRadius(d) + 4; })
-      .attr('dy', -4)
-      .attr('fill', '#fbbf24')
-      .attr('font-size', '14px')
+      .attr('dx', function (d) {
+        return d.data.elderInside ? 0 : circleRadius(d) + 4;
+      })
+      .attr('dy', function (d) {
+        return d.data.elderInside ? -(circleRadius(d) - 10) : -4;
+      })
+      .attr('text-anchor', function (d) {
+        return d.data.elderInside ? 'middle' : 'start';
+      })
+      .attr('fill', function (d) {
+        return d.data.elderInside ? '#ef4444' : '#fbbf24';
+      })
+      .attr('font-size', function (d) {
+        return d.data.elderInside ? '10px' : '14px';
+      })
       .text('\u2720');
   };
 
@@ -355,15 +376,25 @@
       .attr('font-size', '10px')
       .text(function (d) { return d.data.location || ''; });
 
-    // B=X 7=X inside circle
+    // B=X stacked inside circle
     nodes.filter(function (d) { return !d.data.isRoot; })
       .append('text')
-      .attr('dy', 1)
+      .attr('dy', -3)
       .attr('text-anchor', 'middle')
       .attr('fill', function (d) { return d.data.commandsObeyed >= 5 ? '#000' : '#fff'; })
       .attr('font-size', '8px')
       .attr('font-weight', '700')
-      .text(function (d) { return 'B=' + d.data.believers + ' 7=' + d.data.commandsObeyed; });
+      .text(function (d) { return 'B=' + d.data.believers; });
+
+    // 7=X stacked inside circle
+    nodes.filter(function (d) { return !d.data.isRoot; })
+      .append('text')
+      .attr('dy', 7)
+      .attr('text-anchor', 'middle')
+      .attr('fill', function (d) { return d.data.commandsObeyed >= 5 ? '#000' : '#fff'; })
+      .attr('font-size', '8px')
+      .attr('font-weight', '700')
+      .text(function (d) { return '7=' + d.data.commandsObeyed; });
 
     // Leader name below circle
     nodes.filter(function (d) { return !d.data.isRoot && d.data.leader; })
