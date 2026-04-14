@@ -18,7 +18,7 @@ const churchData2026 = [
   { id: "dohar-tola", name: "Dohar Tola", leader: "Sanju", believers: 16, commandsObeyed: 5, hasElder: true, elderInside: true, location: "", parentId: "chikhli", yearFounded: 2026, notes: "" },
   { id: "bhora", name: "Bhora", leader: "Prabhat", believers: 12, commandsObeyed: 4, hasElder: true, elderInside: true, location: "", parentId: "dohar-tola", yearFounded: 2026, notes: "" },
   { id: "blpat", name: "Blpat", leader: "P. Gopal", believers: 16, commandsObeyed: 6, hasElder: true, elderInside: false, location: "", parentId: null, yearFounded: 2026, notes: "" },
-  { id: "padma-niya-2026", name: "Padma Niya", leader: "Ramesh", believers: 9, commandsObeyed: 3, hasElder: true, elderInside: true, location: "", parentId: "blpat", yearFounded: 2026, notes: "May be same as historical Padma Niya" },
+  { id: "padma-niya-2026", name: "Padma Niya", leader: "Ramesh", believers: 9, commandsObeyed: 3, hasElder: true, elderInside: true, location: "", parentId: null, yearFounded: 2026, notes: "May be same as historical Padma Niya" },
   { id: "malach-vp", name: "Malach VP", leader: "Ramesh", believers: 15, commandsObeyed: 7, hasElder: true, elderInside: true, location: "", parentId: "padma-niya-2026", yearFounded: 2026, notes: "" },
   { id: "dangava", name: "Dangava", leader: "Jal", believers: 16, commandsObeyed: 7, hasElder: true, elderInside: true, location: "", parentId: null, yearFounded: 2026, notes: "" },
   { id: "rpmth", name: "Rpmth", leader: "Jal", believers: 15, commandsObeyed: 5, hasElder: false, elderInside: false, location: "", parentId: "dangava", yearFounded: 2026, notes: "" },
